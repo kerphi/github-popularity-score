@@ -9,7 +9,7 @@ Here is the criterias associated to the given weights (relative weight is the fi
   - Number of issues        (weight = 4.58438 * 1)
   - Number of watchers      (weight = 1 * 1)
 
-##Examples
+## Examples
 
     ./github-ps node
     ./github-ps phpfreechat
@@ -21,6 +21,12 @@ Should returns someting like that:
     phpfreechat project popularity score is 99.3049
     github-popularity-score project popularity score is 1
 
-##Dependencies
+## Dependencies
 
     sudo apt-get install curl wcalc xmllint
+
+## Todo
+
+  - Take into account number of tags
+  - Take into account time between today and the date of first commit
+  - Take into account time between today and the last commit
