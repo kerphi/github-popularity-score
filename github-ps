@@ -1,0 +1,30 @@
+#!/bin/bash
+
+PROJECT="$1"
+PROJECT_URL="https://github.com`curl -s "https://github.com/search?utf8=%E2%9C%93&q=$PROJECT&repo=&langOverride=&start_value=1&type=Repositories&language=" | \
+             xmllint --xmlout --html --xpath "string(//div[@class='result'][1]/h2/a/@href)" - 2>/dev/null`"
+
+ISSUES_PAGE=`curl -s "$PROJECT_URL/issues"`
+NB_OPEN_ISSUES=`echo $ISSUES_PAGE \
+  | xmllint --xmlout --html --xpath "//li[@data-filter='open']/a/text()" - 2>/dev/null \
+  | sed 's/[^0-9]//g'`
+NB_CLOSED_ISSUES=`echo $ISSUES_PAGE \
+  | xmllint --xmlout --html --xpath "//li[@data-filter='closed']/a/text()" - 2>/dev/null \
+  | sed 's/[^0-9]//g'`
+NB_ISSUES=`expr $NB_OPEN_ISSUES + $NB_CLOSED_ISSUES`
+
+PULLS_PAGE=`curl -s "$PROJECT_URL/pulls"`
+NB_PULLS=`echo $PULLS_PAGE \
+  | xmllint --xmlout --html --xpath "//a[@highlight='repo_pulls']/span/text()" - 2>/dev/null`  
+
+NB_WATCHERS=`echo $PULLS_PAGE \
+  | xmllint --xmlout --html --xpath "//li[@class='watchers ']/a/text()" - 2>/dev/null \
+  | sed 's/[^0-9]//g'`
+NB_FORKS=`echo $PULLS_PAGE \
+  | xmllint --xmlout --html --xpath "//li[@class='forks']/a/text()" - 2>/dev/null \
+  | sed 's/[^0-9]//g'`
+
+
+POPULARITY_SCORE=`wcalc -q "($NB_ISSUES * 4.58438 * 1 + $NB_PULLS * 150.126 * 3 + $NB_WATCHERS * 1 * 1 + $NB_FORKS * 8.4994 * 2)/17.9988"`
+
+echo "$PROJECT project popularity score is $POPULARITY_SCORE"
