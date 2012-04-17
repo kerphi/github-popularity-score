@@ -34,6 +34,7 @@ Should returns something like that:
 
 ## Todo
 
+  - Use github api. Example: curl https://api.github.com/repos/joyent/node
   - Take into account number of tags
   - Take into account time between today and the date of first commit
   - Take into account time between today and the last commit
