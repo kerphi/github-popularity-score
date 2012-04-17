@@ -1,6 +1,7 @@
 # github-ps calculates a github's project popularity score
 
 [NodeJS](https://github.com/joyent/node) project has been taken as a reference project to evaluate the "normal life" of a project and to estimate relative weight of each criteria (date of these number is 17 april 2012).
+  
   - NodeJS pull requests  = 90
   - NodeJS forks = 1681
   - NodeJS issues = 443+2682
