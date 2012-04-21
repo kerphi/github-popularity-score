@@ -20,27 +20,31 @@ It has been arbitrary decided that number of pull requests is 3 times heavier th
 
 ## Usages examples
 
-    ./github-ps node
-    node project popularity score is 6988
-    ----
-    score = 6988
-    pulls = 89
-    forks = 1681
-    tags = 139
-    issues = 3115
-    open_issues = 432
-    closed_issues = 2683
-    watchers = 14280
-    days_from_start = 1056
-    no_activity_days = 0
-    project_url = https://github.com/joyent/node
+```bash
+./github-ps node
+node project popularity score is 6988
+----
+score = 6988
+pulls = 89
+forks = 1681
+tags = 139
+issues = 3115
+open_issues = 432
+closed_issues = 2683
+watchers = 14280
+days_from_start = 1056
+no_activity_days = 0
+project_url = https://github.com/joyent/node
 
-    ./github-ps phpfreechat | grep ^score
-    score = 396
+./github-ps phpfreechat | grep ^score
+score = 396
 
-    ./github-ps github-popularity-score | grep ^score
-    score = 1
+./github-ps github-popularity-score | grep ^score
+score = 1
+```
 
 ## Dependencies
 
-    sudo apt-get install curl wcalc xmllint php5-cli
+```bash
+sudo apt-get install curl wcalc xmllint php5-cli
+```
