@@ -45,4 +45,6 @@ It has been arbitrary decided that number of pull requests is 3 times heavier th
 
 ## Dependencies
 
-    sudo apt-get install curl wcalc xmllint php5-cli
+```bash
+sudo apt-get install curl wcalc xmllint php5-cli
+```
