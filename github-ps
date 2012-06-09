@@ -18,13 +18,6 @@ PULLS_PAGE=`curl -s "$PROJECT_URL/pulls"`
 NB_PULLS=`echo $PULLS_PAGE \
   | xmllint --xmlout --html --xpath "//a[@highlight='repo_pulls']/span/text()" - 2>/dev/null`  
 
-NB_WATCHERS=`echo $PULLS_PAGE \
-  | xmllint --xmlout --html --xpath "//li[@class='watchers ']/a/text()" - 2>/dev/null \
-  | sed 's/[^0-9]//g'`
-NB_FORKS=`echo $PULLS_PAGE \
-  | xmllint --xmlout --html --xpath "//li[@class='forks']/a/text()" - 2>/dev/null \
-  | sed 's/[^0-9]//g'`
-
 CODE_PAGE=`curl -s "$PROJECT_URL"`
 NB_TAGS=`echo $CODE_PAGE \
   | xmllint --xmlout --html --xpath "//a[@highlight='repo_tags']/span/text()" - 2>/dev/null`  
@@ -32,6 +25,8 @@ NB_TAGS=`echo $CODE_PAGE \
 JSON_REPOS=`curl -s https://api.github.com/repos$PROJECT_PATH_URL`
 DAYS_FROM_START=`echo $JSON_REPOS | php -r "echo floor((time() - strtotime(json_decode(file_get_contents('php://stdin'))->created_at))/60/60/24);"`
 NO_ACTIVITY_DAYS=`echo $JSON_REPOS | php -r "echo floor((time() - strtotime(json_decode(file_get_contents('php://stdin'))->updated_at))/60/60/24);"`
+NB_FORKS=`echo $JSON_REPOS | php -r "echo json_decode(file_get_contents('php://stdin'))->forks;"`
+NB_WATCHERS=`echo $JSON_REPOS | php -r "echo json_decode(file_get_contents('php://stdin'))->watchers;"`
 
 POPULARITY_SCORE=`wcalc -q -P0 "($NB_ISSUES * 4.58438 * 1 + $NB_PULLS * 150.126 * 3 + $NB_WATCHERS * 1 * 1 + $NB_FORKS * 8.4994 * 2 + $NB_TAGS * 102.734 * 2)/17.9988"`
 

@@ -20,6 +20,7 @@ It has been arbitrary decided that number of pull requests is 3 times heavier th
 
 ## Usages examples
 
+```bash
     ./github-ps node
     node project popularity score is 6988
     ----
@@ -40,6 +41,7 @@ It has been arbitrary decided that number of pull requests is 3 times heavier th
 
     ./github-ps github-popularity-score | grep ^score
     score = 1
+```
 
 ## Dependencies
 
